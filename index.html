@@ -42,72 +42,33 @@
             border-radius: 10px;
             -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
         }
-        elevenlabs-convai {
-            display: block !important;
-            margin: 20px auto !important;
-            width: 300px !important;
-            max-width: 300px !important;
-            position: relative !important;
-            box-sizing: border-box !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-        }
-
-        /* Для мобильных устройств (планшеты и смартфоны) */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 30px;
-                height: auto;
-                min-height: 100vh;
-                background-attachment: scroll;
-                background-position: top center;
-            }
-            h1 {
-                font-size: 2.5em;
-                padding: 8px 15px;
-            }
-            p {
-                font-size: 1.2em;
-                padding: 5px 10px;
-            }
-            elevenlabs-convai {
-                width: 80% !important;
-                max-width: 250px !important;
-                margin: 15px auto !important;
-                padding: 0 !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-            }
-        }
-
-        /* Для смартфонов (до 480px) */
-        @media (max-width: 480px) {
-            body {
-                padding-top: 20px;
-            }
-            h1 {
-                font-size: 1.8em;
-                padding: 5px 10px;
-            }
-            p {
-                font-size: 1em;
-                padding: 3px 8px;
-            }
-            elevenlabs-convai {
-                width: 80% !important;
-                max-width: 180px !important;
-                margin: 10px auto !important;
-                padding: 0 !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-            }
-        }
     </style>
 </head>
 <body>
     <h1>KOMOFLOOR</h1>
     <p>НАПОЛЬНЫЕ ПОКРЫТИЯ ИЗ МАССИВА ЭКЗОТИЧЕСКИХ ПОРОД</p>
-    <elevenlabs-convai agent-id="dkzJpXyY8RJmtIXZqGjh"></elevenlabs-convai>
+    <!-- Виджет с inline-стилями -->
+    <elevenlabs-convai id="convai-widget" agent-id="dkzJpXyY8RJmtIXZqGjh" style="display: block !important; margin: 20px auto !important; width: 300px !important; max-width: 300px !important; position: relative !important; box-sizing: border-box !important; left: 50% !important; transform: translateX(-50%) !important;"></elevenlabs-convai>
     <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+    <!-- JavaScript для адаптации -->
+    <script>
+        function adjustWidgetSize() {
+            var widget = document.getElementById('convai-widget');
+            if (window.innerWidth <= 768) {
+                widget.style.width = '80% !important';
+                widget.style.maxWidth = '250px !important';
+                widget.style.margin = '15px auto !important';
+            }
+            if (window.innerWidth <= 480) {
+                widget.style.width = '80% !important';
+                widget.style.maxWidth = '180px !important';
+                widget.style.margin = '10px auto !important';
+            }
+        }
+
+        // Вызываем при загрузке и при изменении размера окна
+        window.onload = adjustWidgetSize;
+        window.onresize = adjustWidgetSize;
+    </script>
 </body>
 </html>
